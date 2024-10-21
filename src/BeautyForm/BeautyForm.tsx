@@ -18,9 +18,25 @@ const BeautyForm = ({ onFormDataChange }) => {
   const [zoom, setZoom] = useState(1); // Zoom level for cropping
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null); // Final cropped area
   const [croppedAvatar, setCroppedAvatar] = useState(null); // Store the cropped avatar
+  const [charCount, setCharCount] = useState(0); // Character count for longText
+  const [warning, setWarning] = useState(false); // Warning for reaching limit
+
+  const MAX_CHAR = 500;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Check if the field is "longText" to handle character limit
+    if (name === 'longText') {
+      if (value.length > MAX_CHAR) {
+        setWarning(true);
+        return; // Do not update form data if exceeding limit
+      } else {
+        setWarning(false);
+      }
+      setCharCount(value.length); // Update character count
+    }
+
     const updatedFormData = {
       ...formData,
       [name]: value
@@ -61,7 +77,7 @@ const BeautyForm = ({ onFormDataChange }) => {
 
   return (
     <div className="container mt-5 d-flex justify-content-center">
-      <div className="beauty-form p-4 col-7 col-sm-8">
+      <div className="beauty-form p-4 col-8 col-sm-9">
         <h2 className="mb-4 text-center">Nhập nội dung</h2>
         <form onSubmit={handleSubmit}>
           {/* Tên */}
@@ -139,6 +155,8 @@ const BeautyForm = ({ onFormDataChange }) => {
               placeholder="Nhập nội dung dài"
               required
             />
+            <small className="text-muted">{charCount}/{MAX_CHAR} kí tự </small>
+            {warning && <div className="text-danger">Tối đa 500 kí tự</div>}
           </div>
 
           {/* Avatar Upload */}

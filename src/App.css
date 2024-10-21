@@ -99,7 +99,7 @@ html, body{
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    width: 250px;
+    width: 350px;
     aspect-ratio: 320 / 546;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -125,7 +125,7 @@ html, body{
 }
 
 .m-textbox2-con{
-    padding-top: 30px;
+    padding-top: 10px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -141,7 +141,7 @@ html, body{
     color: #1461B4;
     font-family: "CocoFy";
     margin-left: 15px;
-    font-size: 8px;
+    font-size: 10px;
     word-spacing: 7px;
     text-indent: 5px
 }
@@ -149,7 +149,7 @@ html, body{
 .m-textstyle2{
     color: #E94D19;
     font-family: "AltherGothic";
-    font-size: 7px;
+    font-size: 8px;
     text-indent: 30px;
 }
 
