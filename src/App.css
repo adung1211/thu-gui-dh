@@ -1,0 +1,76 @@
+html, body{
+    background-color: #edf7f6;
+    height: 100%;
+    margin: 0;
+}
+
+.main-wrap{
+    display: grid;
+    place-items: center;
+    height: 100%;
+    padding-top: 3vw;
+}
+
+.main-container{
+    background-image: url('./assets/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    width: 960px;
+    height: 540px;
+    display: grid;
+    grid-template-rows: 150px auto 80px;
+}
+
+.row{
+    width: 100%;
+    position: relative;
+}
+
+.topleft-image {
+   height: 100%;
+}
+
+.thugui{
+    height: 55%;
+}
+
+.chaomung{
+    height: 85%;
+    float:right;
+}
+
+.topright-image{
+    float: right;
+    height: 100%;
+}
+.bottomleft-image{
+    height: 100%;
+}
+.bottomright-image{
+    height: 100%;
+    float: right;
+}
+
+.bottomline-image{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+@media (max-width: 426px){
+    .main-container{
+        width: 85vw;
+        aspect-ratio:  2 / 3;
+    }
+
+    .topleft-image{
+        width: 135%;
+    }
+
+    .topright-image{
+        width: 135%;
+    }
+}
