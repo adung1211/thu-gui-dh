@@ -5,6 +5,8 @@ import bottomrightPath from '../assets/bottomright.png'
 import bottomlinePath from '../assets/bottomline.png'
 import thuguiPath from '../assets/thugui.png'
 import chaomungPath from '../assets/chaomung.png'
+import circlePath from '../assets/circle.png'
+import bu from '../assets/bu.png'
 
 const DesktopUI = () => (
     <div className='main-wrap'>
@@ -15,8 +17,9 @@ const DesktopUI = () => (
                 <img src={toprightPath} className='topright-image'></img>
                 <img src={chaomungPath} className='chaomung'></img>
             </div>
-            <div className='row'>
-               
+            <div className='row' >
+               <img src={circlePath} className='circle'></img>
+               <div className='custom-text-box'></div>
             </div>
             <div className='row'>
                 <img src={bottomleftPath} className='bottomleft-image'></img>

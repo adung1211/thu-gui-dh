@@ -1,5 +1,5 @@
 import './App.css'
-import DesktopUI from './desktopui/desktopui';
+import DesktopUI from './desktopui/DesktopUI';
 import MobileUI from './mobileui/MobileUI';
 import { useMediaQuery } from 'react-responsive';
 
