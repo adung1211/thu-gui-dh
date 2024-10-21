@@ -113,7 +113,6 @@ html, body{
 .m-row{
     width: 100%;
     display: grid;
-    justify-content: end;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -127,3 +126,10 @@ html, body{
     box-shadow: 0px 4px 8px #1973E8; /* Optional: box shadow */;
     justify-self: center
 }
+
+.m-row2{
+    height: 100%;
+    position: relative;
+    bottom: 0;
+}
+
