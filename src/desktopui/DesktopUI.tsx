@@ -11,19 +11,19 @@ const DesktopUI = () => (
     <div className='main-wrap'>
         <div className="main-container">
             <div className='row'>
-                <img src={topleftPath} className='topleft-image'></img>
-                <img src={thuguiPath} className='thugui'></img>
-                <img src={toprightPath} className='topright-image'></img>
-                <img src={chaomungPath} className='chaomung'></img>
+                <img src={topleftPath} style={{width: '120%'}}></img>
+                <img src={thuguiPath} style={{width: '60%', alignSelf: 'end'}}></img>
+                <img src={chaomungPath} style={{width: '120%', justifySelf: 'end', alignSelf:'end'}}></img>
+                <img src={toprightPath} style={{width: '120%', justifySelf: 'end'}}></img>
             </div>
-            <div className='row' >
-               <img src={circlePath} className='circle'></img>
-               <div className='custom-text-box'></div>
+            <div className='row1'>
+                <img src={circlePath} style={{width: '40%', alignSelf: 'center', justifySelf: 'center'}}></img>
+                <div className='custom-text-box' style={{alignSelf: 'end'}}></div>
             </div>
-            <div className='row'>
-                <img src={bottomleftPath} className='bottomleft-image'></img>
-                <img src={bottomrightPath} className='bottomright-image'></img>
-                <img src={bottomlinePath} className='bottomline-image'></img>
+            <div className='m-row2'>
+                <img src={bottomleftPath}  style={{width: '30%', position: 'absolute', bottom: '0'}}></img>
+                <img src={bottomrightPath}  style={{width: '30%', position: 'absolute', bottom: '0', right: '0'}}></img>
+                <img src={bottomlinePath}  style={{width: '100%', position: 'absolute', bottom: '0'}}></img>
             </div>
         </div>
     </div>
