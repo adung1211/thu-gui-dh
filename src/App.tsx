@@ -1,4 +1,6 @@
 import './App.css'
+import "./index.css";
+import "./assets/fonts/cocofy.ttf";
 import DesktopUI from './desktopui/DesktopUI';
 import MobileUI from './mobileui/MobileUI';
 import { useMediaQuery } from 'react-responsive';
