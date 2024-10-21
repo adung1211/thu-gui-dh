@@ -6,7 +6,6 @@ import bottomlinePath from '../assets/bottomline.png'
 import thuguiPath from '../assets/thugui.png'
 import chaomungPath from '../assets/chaomung.png'
 import circlePath from '../assets/circle.png'
-import bu from '../assets/bu.png'
 
 const DesktopUI = () => (
     <div className='main-wrap'>
