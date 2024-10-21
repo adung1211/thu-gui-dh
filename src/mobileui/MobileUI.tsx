@@ -7,7 +7,11 @@ import thuguiPath from '../assets/thugui.png'
 import chaomungPath from '../assets/chaomung.png'
 import circlePath from '../assets/circle.png'
 
+import BeautyForm from '../BeautyForm/BeautyForm'
+
 const MobileUI = () => (
+    <>
+    <BeautyForm/>
     <div className='main-wrap'>
         <div className='m-main-container'>
             <div className='m-row'>
@@ -25,6 +29,7 @@ const MobileUI = () => (
             </div>
         </div>
     </div>
+    </>
 );
 
 export default MobileUI;

@@ -1,4 +1,9 @@
 @font-face{
     font-family: "CocoFy";
     src: url('./assets/fonts/cocofy.ttf') 
-  }
+}
+
+@font-face{
+    font-family: "AltherGothic";
+    src: url('./assets/fonts/althergothic.ttf') 
+}

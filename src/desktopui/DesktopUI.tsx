@@ -7,22 +7,51 @@ import thuguiPath from '../assets/thugui.png'
 import chaomungPath from '../assets/chaomung.png'
 import circlePath from '../assets/circle.png'
 
-const DesktopUI = () => (
+import BeautyForm from '../BeautyForm/BeautyForm'
+import { useState } from 'react';
+
+const DesktopUI = () => {
+    const [formData, setFormData] = useState({
+        ten: 'Nguyễn Văn A',
+        xungHo: 'Anh',
+        chucVu: 'Chức vụ',
+        longText: 'Chúc đại hội thành công tốt đẹp',
+        avatar: circlePath
+    });
+
+    const handleFormDataChange = (data) => {
+        setFormData(data);
+    };
+    return (
+    <>
+    <BeautyForm onFormDataChange={handleFormDataChange}/>
+
     <div className='main-wrap'>
         <div className="main-container">
-            <div className='row'>
+            <div className='row0'>
                 <img src={topleftPath} style={{width: '120%'}}></img>
                 <img src={thuguiPath} style={{width: '60%', alignSelf: 'end'}}></img>
                 <img src={chaomungPath} style={{width: '120%', justifySelf: 'end', alignSelf:'end'}}></img>
                 <img src={toprightPath} style={{width: '120%', justifySelf: 'end'}}></img>
             </div>
             <div className='row1'>
-                <img src={circlePath} style={{width: '45%', alignSelf: 'center', justifySelf: 'center'}}></img>
+                <img src={formData.avatar} className="cropped-avatar" style={{borderRadius: '50%', width: '50%', alignSelf: 'center', justifySelf: 'center', border: "5px solid #1973E8", marginTop: "30px"}}></img>
+
                 <div className='custom-text-box' style={{alignSelf: 'end'}}>
-                    <p style={{color: "#2357A4", fontFamily: "CocoFy", marginLeft: "15px", fontSize: "20px"}}>
-                        Tôi tin rằng Đại hội sẽ là đợt sinh hoạt chính trị sâu rộng, diễn đàn để thanh niên Thành phố mang tên Bác thể hiện tiếng nói, tâm tư, khát vọng cống hiến, xây dựng và phát triển Thành phố có chất lượng sống tốt, văn minh, hiện đại, nghĩa tình.
-                        Kính chúc Đại hội đại biểu Hội LHTN Việt Nam Thành phố Hồ Chí Minh lần thứ IX, nhiệm kỳ 2024 - 2029 diễn ra sôi nổi, trang trọng, tạo sinh khí vui tươi, phấn khởi trong các tầng lớp thanh niên và sẽ đề ra các công trình, phần việc hiệu quả, thiết thực trong giai đoạn phát triển mới của Thành phố.
+                    <p className='textstyle1'>
+                        {formData.longText}
                     </p>
+
+                    <div className='textbox2-con'>
+                        <div className='textbox2'>
+                            <p className='textstyle2'>
+                            {formData.xungHo} <b>{formData.ten}</b>
+                            </p>
+                            <p className='textstyle2'>
+                                {formData.chucVu}   
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className='m-row2'>
@@ -32,6 +61,6 @@ const DesktopUI = () => (
             </div>
         </div>
     </div>
+    </>
 );
-
-export default DesktopUI;
+}; export default DesktopUI;

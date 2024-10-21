@@ -1,0 +1,20 @@
+.beauty-form {
+    width: 400px;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .beauty-form h2 {
+    font-size: 1.5rem;
+  }
+  
+  .form-control {
+    font-size: 0.9rem;
+  }
+  
+  .btn {
+    font-size: 0.9rem;
+  }
+  

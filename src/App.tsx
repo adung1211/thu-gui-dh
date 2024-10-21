@@ -1,8 +1,10 @@
 import './App.css'
 import "./index.css";
 import "./assets/fonts/cocofy.ttf";
+import "./assets/fonts/althergothic.ttf";
 import DesktopUI from './desktopui/DesktopUI';
 import MobileUI from './mobileui/MobileUI';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useMediaQuery } from 'react-responsive';
 
 
