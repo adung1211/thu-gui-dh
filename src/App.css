@@ -31,7 +31,6 @@ html, body{
     margin-bottom: -100px;
     border: 3px solid #1973E8; /* Border weight */
     border-radius: 10px;     /* Border radius */
-    font-size: 16px;
     outline: none;
     box-shadow: 0px 4px 8px #1973E8; /* Optional: box shadow */;
     align-self: end;
@@ -117,10 +116,41 @@ html, body{
     height: 190px;
     border: 3px solid #1973E8; /* Border weight */
     border-radius: 10px;     /* Border radius */
-    font-size: 16px;
     outline: none;
     box-shadow: 0px 4px 8px #1973E8; /* Optional: box shadow */;
-    justify-self: center
+    justify-self: center;
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+
+}
+
+.m-textbox2-con{
+    padding-top: 30px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.m-textbox2{
+    justify-self: center;
+    justify-items: center;
+    grid-column: 2 / 3;
+}
+
+.m-textstyle1{
+    color: #1461B4;
+    font-family: "CocoFy";
+    margin-left: 15px;
+    font-size: 8px;
+    word-spacing: 7px;
+    text-indent: 5px
+}
+
+.m-textstyle2{
+    color: #E94D19;
+    font-family: "AltherGothic";
+    font-size: 7px;
+    text-indent: 30px;
 }
 
 .m-row2{

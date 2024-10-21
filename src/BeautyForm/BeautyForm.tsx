@@ -61,7 +61,7 @@ const BeautyForm = ({ onFormDataChange }) => {
 
   return (
     <div className="container mt-5 d-flex justify-content-center">
-      <div className="beauty-form p-4">
+      <div className="beauty-form p-4 col-7 col-sm-8">
         <h2 className="mb-4 text-center">Nhập nội dung</h2>
         <form onSubmit={handleSubmit}>
           {/* Tên */}
