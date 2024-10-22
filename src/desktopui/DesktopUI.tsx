@@ -22,6 +22,13 @@ const DesktopUI = () => {
     const handleFormDataChange = (data) => {
         setFormData(data);
     };
+
+    const formatTextWithIndentation = (text) => {
+        const indentation = '    '; // Four spaces for indentation
+        return text.split('\n').map((line, index) => {
+        return line.length > 0 ? indentation + line : line; // Add indentation to non-empty lines
+        }).join('\n');
+    };
     return (
     <>
     <BeautyForm onFormDataChange={handleFormDataChange}/>
@@ -38,8 +45,8 @@ const DesktopUI = () => {
                 <img src={formData.avatar} className="cropped-avatar" style={{borderRadius: '50%', width: '50%', alignSelf: 'center', justifySelf: 'center', border: "5px solid #1973E8", marginTop: "30px"}}></img>
 
                 <div className='custom-text-box' style={{alignSelf: 'end'}}>
-                    <p className='textstyle1'>
-                        "{formData.longText}"
+                    <p className='textstyle1' style={{whiteSpace: 'pre-wrap', wordWrap: 'break-word'}}>
+                        {formatTextWithIndentation(formData.longText)}
                     </p>
 
                     <div className='textbox2-con'>

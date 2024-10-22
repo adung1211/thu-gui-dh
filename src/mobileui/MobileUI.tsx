@@ -22,6 +22,12 @@ const MobileUI = () => {
     const handleFormDataChange = (data) => {
         setFormData(data);
     };
+    const formatTextWithIndentation = (text) => {
+        const indentation = '  '; // Four spaces for indentation
+        return text.split('\n').map((line, index) => {
+        return line.length > 0 ? indentation + line : line; // Add indentation to non-empty lines
+        }).join('\n');
+    };
     return (
     <>
     <BeautyForm onFormDataChange={handleFormDataChange}/>
@@ -35,8 +41,8 @@ const MobileUI = () => {
             <img src={formData.avatar} className="cropped-avatar" style={{width: '35%', justifySelf: 'center', marginTop: "10px", borderRadius: '50%', border: "2px solid #1973E8"}}></img>
             <img src={thuguiPath} style={{width: '30%', justifySelf: 'start', alignSelf: 'end', paddingLeft: '20px'}}></img>
             <div className='m-custom-text-box'>
-                <p className='m-textstyle1'>
-                    "{formData.longText}"
+                <p className='m-textstyle1' style={{whiteSpace: 'pre-wrap', wordWrap: 'break-word'}}>
+                    {formatTextWithIndentation(formData.longText)}
                 </p>
 
                 <div className='m-textbox2-con'>
