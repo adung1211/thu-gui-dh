@@ -39,15 +39,15 @@ const DesktopUI = () => {
 
                 <div className='custom-text-box' style={{alignSelf: 'end'}}>
                     <p className='textstyle1'>
-                        {formData.longText}
+                        "{formData.longText}"
                     </p>
 
                     <div className='textbox2-con'>
                         <div className='textbox2'>
                             <p className='textstyle2'>
-                            {formData.xungHo} <b>{formData.ten}</b>
+                            {formData.xungHo} <span className='textstyle3'>{formData.ten}</span>
                             </p>
-                            <p className='textstyle2'>
+                            <p className='textstyle2' style={{marginTop: "-15px"}}>
                                 {formData.chucVu}   
                             </p>
                         </div>

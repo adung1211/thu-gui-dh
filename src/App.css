@@ -56,6 +56,7 @@ html, body{
 }
 
 .textbox2{
+    margin-left: 100px;
     justify-self: center;
     justify-items: center;
     grid-column: 2 / 3;
@@ -67,12 +68,20 @@ html, body{
     margin-left: 15px;
     font-size: 20px;
     word-spacing: 7px;
-    text-indent: 30px
+    text-indent: 30px;
+    margin-top: 15px;
 }
 
 .textstyle2{
     color: #E94D19;
     font-family: "AltherGothic";
+    font-size: 17px;
+    text-indent: 30px
+}
+
+.textstyle3{
+    color: #E94D19;
+    font-family: "FutureExtra";
     font-size: 17px;
     text-indent: 30px
 }
@@ -125,13 +134,14 @@ html, body{
 }
 
 .m-textbox2-con{
-    padding-top: 10px;
+    margin-top: 25px;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr;
 }
 
 .m-textbox2{
+    margin-left: 60px;
     justify-self: center;
     justify-items: center;
     grid-column: 2 / 3;
@@ -143,7 +153,8 @@ html, body{
     margin-left: 15px;
     font-size: 10px;
     word-spacing: 7px;
-    text-indent: 5px
+    text-indent: 5px;
+    margin-top: 7px;
 }
 
 .m-textstyle2{
@@ -152,6 +163,14 @@ html, body{
     font-size: 8px;
     text-indent: 30px;
 }
+
+.m-textstyle3{
+    color: #E94D19;
+    font-family: "FutureExtra";
+    font-size: 8px;
+    text-indent: 30px;
+}
+
 
 .m-row2{
     height: 100%;

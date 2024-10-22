@@ -36,13 +36,13 @@ const MobileUI = () => {
             <img src={thuguiPath} style={{width: '30%', justifySelf: 'start', alignSelf: 'end', paddingLeft: '20px'}}></img>
             <div className='m-custom-text-box'>
                 <p className='m-textstyle1'>
-                    {formData.longText}
+                    "{formData.longText}"
                 </p>
 
                 <div className='m-textbox2-con'>
                     <div className='m-textbox2'>
                         <p className='m-textstyle2' style={{marginBottom: "1px"}}>
-                        {formData.xungHo} <b>{formData.ten}</b>
+                        {formData.xungHo} <span className='m-textstyle3'>{formData.ten}</span>
                         </p>
                         <p className='m-textstyle2'>
                             {formData.chucVu}   

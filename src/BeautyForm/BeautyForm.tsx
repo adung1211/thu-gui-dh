@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import './BeautyForm.css';  // Import a CSS file for custom styles
 import Draggable from 'react-draggable';  // Import react-draggable
 import Cropper from 'react-easy-crop';
+import circlePath from '../assets/circle.png'
 import { getCroppedImg } from './utils';  // Utility function for cropping image
 
 const BeautyForm = ({ onFormDataChange }) => {
   const [formData, setFormData] = useState({
-    ten: '',
-    xungHo: '',
-    chucVu: '',
-    longText: '',
-    avatar: '' // For avatar storage
+    ten: 'Nguyễn Văn A',
+    xungHo: 'Anh',
+    chucVu: 'Chức vụ',
+    longText: 'Chúc đại hội thành công tốt đẹp',
+    avatar: circlePath // For avatar storage
   });
 
   const [imageSrc, setImageSrc] = useState(null); // Store uploaded image
@@ -70,9 +71,47 @@ const BeautyForm = ({ onFormDataChange }) => {
     onFormDataChange({ ...formData, avatar: croppedImage });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData); // Handle the form data (e.g., send to backend)
+  const handleSubmit = async (e) => {
+      e.preventDefault();
+
+      const formDataToSend = new FormData();
+      formDataToSend.append('ten', formData.ten);
+      formDataToSend.append('xungHo', formData.xungHo);
+      formDataToSend.append('chucVu', formData.chucVu);
+      formDataToSend.append('longText', formData.longText);
+
+      // Convert base64 image to Blob and append to form data
+      if (formData.avatar) {
+          const response = await fetch(formData.avatar);
+          const blob = await response.blob();
+          formDataToSend.append('avatar', blob, 'avatar.png');
+      }
+
+      // Send form data to the backend and handle the response
+      try {
+          const res = await fetch('http://localhost:3000/api/endpoint', {
+              method: 'POST',
+              body: formDataToSend,
+          });
+
+          if (!res.ok) {
+              throw new Error('Network response was not ok');
+          }
+
+          // Get the image as a Blob and create a link for download
+          const blob = await res.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'downloaded_image.png'; // Filename for downloaded image
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          window.URL.revokeObjectURL(url); // Clean up
+
+      } catch (error) {
+          console.error('Error:', error);
+      }
   };
 
   return (
@@ -165,7 +204,7 @@ const BeautyForm = ({ onFormDataChange }) => {
             <input type="file" accept="image/*" onChange={handleImageUpload} className="form-control" />
             {imageSrc && (
               <div className="image-container mt-3">
-                <div style={{ position: 'relative', width: '300px', height: '300px' }}>
+                <div style={{ position: 'relative', width: '310px', height: '310px' }}>
                   <Cropper
                     image={imageSrc}
                     crop={crop}
@@ -186,7 +225,7 @@ const BeautyForm = ({ onFormDataChange }) => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="btn btn-primary w-100">Gửi</button>
+          <button type="submit" className="btn btn-primary w-100">Lưu thiệp về máy</button>
         </form>
       </div>
     </div>

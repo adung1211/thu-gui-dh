@@ -7,3 +7,8 @@
     font-family: "AltherGothic";
     src: url('./assets/fonts/althergothic.ttf') 
 }
+
+@font-face{
+    font-family: "FutureExtra";
+    src: url('./assets/fonts/futureextra.ttf') 
+}
