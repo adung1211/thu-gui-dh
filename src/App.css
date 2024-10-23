@@ -74,14 +74,14 @@ html, body{
 .textstyle2{
     color: #E94D19;
     font-family: "AltherGothic";
-    font-size: 17px;
+    font-size: 15px;
     text-indent: 30px
 }
 
 .textstyle3{
     color: #E94D19;
     font-family: "FutureExtra";
-    font-size: 17px;
+    font-size: 15px;
     text-indent: 30px
 }
 
@@ -149,24 +149,22 @@ html, body{
 .m-textstyle1{
     color: #1461B4;
     font-family: "CocoFy";
-    margin-left: 15px;
     font-size: 10px;
     word-spacing: 7px;
     margin-top: 7px;
+    text-indent: 7px;
 }
 
 .m-textstyle2{
     color: #E94D19;
     font-family: "AltherGothic";
-    font-size: 8px;
-    text-indent: 30px;
+    font-size: 6px;
 }
 
 .m-textstyle3{
     color: #E94D19;
     font-family: "FutureExtra";
-    font-size: 8px;
-    text-indent: 30px;
+    font-size: 6px;
 }
 
 

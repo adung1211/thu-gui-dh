@@ -57,11 +57,8 @@ const BeautyForm = ({ onFormDataChange }) => {
     }
   };
 
-  const onCropComplete = (croppedArea, croppedAreaPixels) => {
+  const onCropComplete = async (croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
-  };
-
-  const handleSaveAvatar = async () => {
     const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
     setFormData((prevData) => ({
       ...prevData,
@@ -116,7 +113,7 @@ const BeautyForm = ({ onFormDataChange }) => {
 
   return (
     <div className="container mt-5 d-flex justify-content-center">
-      <div className="beauty-form p-4 col-8 col-sm-9">
+      <div className="beauty-form p-4 col-12 col-sm-13">
         <h2 className="mb-4 text-center">Nhập nội dung</h2>
         <form onSubmit={handleSubmit}>
           {/* Tên */}
@@ -217,9 +214,6 @@ const BeautyForm = ({ onFormDataChange }) => {
                     onCropComplete={onCropComplete}
                   />
                 </div>
-                <button type="button" className="btn btn-secondary mt-3" onClick={handleSaveAvatar}>
-                  Lưu ảnh đại diện
-                </button>
               </div>
             )}
           </div>
