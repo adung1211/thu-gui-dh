@@ -7,7 +7,6 @@ html, body{
     display: grid;
     place-items: center;
     height: 100%;
-    padding-top: 3vw;
 }
 
 .main-container{
@@ -16,28 +15,31 @@ html, body{
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    width: 1200px;
+    width: 100%;
     aspect-ratio: 1280 / 720;
     display: grid;
     grid-template-rows: 1fr 1.5fr 1fr;
+    gap: 10px;
 }
 
 .custom-text-box {
     float: right;
-    width: 100%;
-    max-width: 580px;
-    height: 130%;
-    max-height: 600px;
-    margin-bottom: -100px;
-    border: 3px solid #1973E8; /* Border weight */
-    border-radius: 10px;     /* Border radius */
-    outline: none;
-    box-shadow: 0px 4px 8px #1973E8; /* Optional: box shadow */;
-    align-self: end;
-
-    display: grid;
-    grid-template-rows: 3fr 1fr;
+    width: 85%;
+    height: 100%;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    font-size: 0.7rem !important;
 }
+.form-control {
+    font-size: 0.7rem !important;
+}
+.btn {
+    font-size: 0.7rem !important;
+}
+  
 .row0{
     display: grid;
     grid-template-columns: 1fr 3fr 3fr 1fr
@@ -48,69 +50,17 @@ html, body{
     grid-template-columns: 1fr 1.4fr;
 }
 
-.textbox2-con{
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    font-size: 40px;
-}
-
-.textbox2{
-    margin-left: 100px;
-    justify-self: center;
-    justify-items: center;
-    grid-column: 2 / 3;
-}
-
-.textstyle1{
-    color: #1461B4;
-    font-family: "CocoFy";
-    margin-left: 15px;
-    font-size: 20px;
-    word-spacing: 7px;
-    margin-top: 15px;
-}
-
-.textstyle2{
-    color: #E94D19;
-    font-family: "AltherGothic";
-    font-size: 15px;
-    text-indent: 30px
-}
-
-.textstyle3{
-    color: #E94D19;
-    font-family: "FutureExtra";
-    font-size: 15px;
-    text-indent: 30px
-}
-
-@media (max-width: 426px){
-    .main-container{
-        width: 85vw;
-        aspect-ratio:  2 / 3;
-    }
-
-    .topleft-image{
-        width: 135%;
-    }
-
-    .topright-image{
-        width: 135%;
-    }
-}
-
-
 .m-main-container{
     background-image: url('./assets/bg.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
-    width: 350px;
-    aspect-ratio: 320 / 546;
+    width: 100%;
+    aspect-ratio: 320 / 800;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
 }
 
 .m-row{
@@ -121,56 +71,52 @@ html, body{
 
 .m-custom-text-box {
     width: 90%;
-    height: 190px;
-    border: 3px solid #1973E8; /* Border weight */
-    border-radius: 10px;     /* Border radius */
-    outline: none;
-    box-shadow: 0px 4px 8px #1973E8; /* Optional: box shadow */;
+    height: 100%;
     justify-self: center;
-    display: grid;
-    grid-template-rows: 2fr 1fr;
+    border: 2px solid #dee2e6;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    font-size: 0.7rem !important;
 
 }
 
-.m-textbox2-con{
-    margin-top: 25px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-}
-
-.m-textbox2{
-    margin-left: 60px;
-    justify-self: center;
-    justify-items: center;
-    grid-column: 2 / 3;
-}
-
-.m-textstyle1{
-    color: #1461B4;
-    font-family: "CocoFy";
-    font-size: 10px;
-    word-spacing: 7px;
-    margin-top: 7px;
-    text-indent: 7px;
-}
-
-.m-textstyle2{
-    color: #E94D19;
-    font-family: "AltherGothic";
-    font-size: 6px;
-}
-
-.m-textstyle3{
-    color: #E94D19;
-    font-family: "FutureExtra";
-    font-size: 6px;
-}
-
-
-.m-row2{
+.row2{
     height: 100%;
     position: relative;
     bottom: 0;
 }
 
+.avatar-hover {
+    transition: opacity 0.3s ease;
+}
+
+.avatar-hover:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.submit-btn {
+    position: absolute;
+    width: 30%;
+    left: 50%;
+    bottom: 20%; /* Adjust this value as needed */
+    transform: translateX(-50%);
+    font-size: 30px !important;
+}
+
+@media (max-width: 1025px){
+    .main-container{
+        aspect-ratio: 1280 / 900;
+    }
+    .custom-text-box {
+        font-size: 10px !important;
+    }
+    .form-control {
+        font-size: 10px !important;
+    }
+    .btn{
+        font-size: 10px !important;
+    }
+}

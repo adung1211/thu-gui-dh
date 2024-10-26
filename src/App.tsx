@@ -6,6 +6,7 @@ import "./assets/fonts/futureextra.ttf"
 import DesktopUI from './desktopui/DesktopUI';
 import MobileUI from './mobileui/MobileUI';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useMediaQuery } from 'react-responsive';
 
 
