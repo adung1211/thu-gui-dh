@@ -23,6 +23,8 @@ const DesktopUI = () => {
     });
     
     const [showModal, setShowModal] = useState(false);
+    const [showPreviewModal, setShowPreviewModal] = useState(false);
+    const [previewImageUrl, setPreviewImageUrl] = useState(null);
     const [charCount, setCharCount] = useState(0);
     const [warning, setWarning] = useState(false);
 
@@ -66,15 +68,24 @@ const DesktopUI = () => {
 
             const blob = await res.blob();
             const url = window.URL.createObjectURL(blob);
+            setPreviewImageUrl(url);
+            setShowPreviewModal(true);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const handleDownload = () => {
+        if (previewImageUrl) {
             const a = document.createElement('a');
-            a.href = url;
+            a.href = previewImageUrl;
             a.download = 'downloaded_image.png';
             document.body.appendChild(a);
             a.click();
             a.remove();
-            window.URL.revokeObjectURL(url);
-        } catch (error) {
-            console.error('Error:', error);
+            window.URL.revokeObjectURL(previewImageUrl);
+            setShowPreviewModal(false); 
+            setPreviewImageUrl(null);
         }
     };
 
@@ -85,10 +96,20 @@ const DesktopUI = () => {
                     <Modal.Title>Tải Avatar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <BeautyForm formData={formData} onFormDataChange={handleFormDataChange} />
+                    <BeautyForm formData={formData} onFormDataChange={handleFormDataChange} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={showPreviewModal} onHide={() => setShowPreviewModal(false)} scrollable>
+                <Modal.Body>
+                    {previewImageUrl && <img src={previewImageUrl} alt="Preview" style={{ width: '100%' }} />}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowPreviewModal(false)}>Đóng</Button>
+                    <Button variant="primary" onClick={handleDownload}>Lưu thiệp về máy</Button>
                 </Modal.Footer>
             </Modal>
 
@@ -195,7 +216,7 @@ const DesktopUI = () => {
                                     {warning && <div className="text-danger">Tối đa 500 kí tự</div>}
                                 </div>
 
-                                <button type="submit" className="btn btn-primary w-100">Lưu thiệp về máy</button>
+                                <button type="submit" className="btn btn-primary w-100">Xem trước thiệp</button>
                             </form>
                         </div>
                     </div>

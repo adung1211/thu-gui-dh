@@ -14,83 +14,106 @@ import BeautyForm from '../BeautyForm/BeautyForm';
 import { API_ENDPOINT } from '../config';
 
 const MobileUI = () => {
-  const [formData, setFormData] = useState({
-    ten: 'Nguyễn Văn A',
-    xungHo: 'Anh',
-    chucVu: 'Chức vụ',
-    longText: 'Chúc đại hội thành công tốt đẹp',
-    avatar: circlePath,
-  });
-
-  const [showModal, setShowModal] = useState(false);
-  const [charCount, setCharCount] = useState(0);
-  const [warning, setWarning] = useState(false);
-
   const MAX_CHAR = 500;
+    
+    const [formData, setFormData] = useState({
+        ten: 'Nguyễn Văn A',
+        xungHo: 'Anh',
+        chucVu: 'Chức vụ',
+        longText: 'Chúc đại hội thành công tốt đẹp',
+        avatar: circlePath,
+    });
+    
+    const [showModal, setShowModal] = useState(false);
+    const [showPreviewModal, setShowPreviewModal] = useState(false);
+    const [previewImageUrl, setPreviewImageUrl] = useState(null);
+    const [charCount, setCharCount] = useState(0);
+    const [warning, setWarning] = useState(false);
 
-  const handleFormDataChange = (updatedData) => setFormData(updatedData);
+    const handleFormDataChange = (data) => setFormData(data);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+    const handleChange = (e) => {
+        const { name, value } = e.target;
 
-    if (name === 'longText') {
-      setWarning(value.length > MAX_CHAR);
-      setCharCount(value.length);
-      if (value.length > MAX_CHAR) return;
-    }
+        if (name === 'longText') {
+            if (value.length > MAX_CHAR) {
+                setWarning(true);
+                return;
+            } else {
+                setWarning(false);
+            }
+            setCharCount(value.length);
+        }
 
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    handleFormDataChange({ ...formData, [name]: value });
-  };
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
+        handleFormDataChange({ ...formData, [name]: value });
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    const formDataToSend = new FormData();
-    formDataToSend.append('ten', formData.ten);
-    formDataToSend.append('xungHo', formData.xungHo);
-    formDataToSend.append('chucVu', formData.chucVu);
-    formDataToSend.append('longText', formData.longText);
+        const formDataToSend = new FormData();
+        formDataToSend.append('ten', formData.ten);
+        formDataToSend.append('xungHo', formData.xungHo);
+        formDataToSend.append('chucVu', formData.chucVu);
+        formDataToSend.append('longText', formData.longText);
 
-    if (formData.avatar) {
-      const response = await fetch(formData.avatar);
-      const blob = await response.blob();
-      formDataToSend.append('avatar', blob, 'avatar.png');
-    }
+        if (formData.avatar) {
+            const response = await fetch(formData.avatar);
+            const blob = await response.blob();
+            formDataToSend.append('avatar', blob, 'avatar.png');
+        }
 
-    try {
-      const res = await fetch(API_ENDPOINT, { method: 'POST', body: formDataToSend });
-      if (!res.ok) throw new Error('Network response was not ok');
+        try {
+            const res = await fetch(API_ENDPOINT, { method: 'POST', body: formDataToSend });
+            if (!res.ok) throw new Error('Network response was not ok');
 
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'downloaded_image.png';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+            const blob = await res.blob();
+            const url = window.URL.createObjectURL(blob);
+            setPreviewImageUrl(url);
+            setShowPreviewModal(true);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
-  return (
-    <>
-      <Modal show={showModal} onHide={() => setShowModal(false)} scrollable>
-        <Modal.Header closeButton>
-          <Modal.Title>Tải Avatar</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <BeautyForm formData={formData} onFormDataChange={handleFormDataChange} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+    const handleDownload = () => {
+        if (previewImageUrl) {
+            const a = document.createElement('a');
+            a.href = previewImageUrl;
+            a.download = 'downloaded_image.png';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(previewImageUrl);
+            setShowPreviewModal(false); 
+            setPreviewImageUrl(null);
+        }
+    };
+
+    return (
+        <>
+            <Modal show={showModal} onHide={() => setShowModal(false)} scrollable>
+                <Modal.Header closeButton>
+                    <Modal.Title>Tải Avatar</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <BeautyForm formData={formData} onFormDataChange={handleFormDataChange} />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={showPreviewModal} onHide={() => setShowPreviewModal(false)} scrollable>
+                <Modal.Body>
+                    {previewImageUrl && <img src={previewImageUrl} alt="Preview" style={{ width: '100%' }} />}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowPreviewModal(false)}>Đóng</Button>
+                    <Button variant="primary" onClick={handleDownload}>Lưu thiệp về máy</Button>
+                </Modal.Footer>
+            </Modal>
 
       <div className='main-wrap'>
         <div className='m-main-container'>
@@ -195,7 +218,7 @@ const MobileUI = () => {
                 {warning && <div className="text-danger">Tối đa 500 kí tự</div>}
               </div>
 
-              <button type="submit" className="btn btn-primary w-100">Lưu thiệp về máy</button>
+              <button type="submit" className="btn btn-primary w-100">Xem trước thiệp</button>
             </form>
           </div>
 
