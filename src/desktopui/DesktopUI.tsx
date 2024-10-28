@@ -85,7 +85,7 @@ const DesktopUI = () => {
                     <Modal.Title>Tải Avatar</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <BeautyForm onFormDataChange={handleFormDataChange} />
+                <BeautyForm formData={formData} onFormDataChange={handleFormDataChange} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>

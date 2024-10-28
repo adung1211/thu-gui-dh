@@ -1,34 +1,23 @@
-import React, { useState } from 'react';
-import './BeautyForm.css';  // Import a CSS file for custom styles
-import Draggable from 'react-draggable';  // Import react-draggable
+import React, { useState, useEffect } from 'react';
 import Cropper from 'react-easy-crop';
-import circlePath from '../assets/circle.png'
-import { getCroppedImg } from './utils';  // Utility function for cropping image
+import circlePath from '../assets/circle.png';
+import { getCroppedImg } from './utils';
 
-const BeautyForm = ({ onFormDataChange }) => {
-  const [formData, setFormData] = useState({
-    ten: 'Nguyễn Văn A',
-    xungHo: 'Anh',
-    chucVu: 'Chức vụ',
-    longText: 'Chúc đại hội thành công tốt đẹp',
-    avatar: circlePath
-});
+const BeautyForm = ({ formData, onFormDataChange }) => {
+  const [localFormData, setLocalFormData] = useState(formData);
+  const [imageSrc, setImageSrc] = useState(null);
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
-  const [imageSrc, setImageSrc] = useState(null); // Store uploaded image
-  const [crop, setCrop] = useState({ x: 0, y: 0 }); // Image crop position
-  const [zoom, setZoom] = useState(1); // Zoom level for cropping
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null); // Final cropped area
-  const [croppedAvatar, setCroppedAvatar] = useState(null); // Store the cropped avatar
+  useEffect(() => {
+    setLocalFormData(formData); // Sync localFormData with parent formData
+  }, [formData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // Check if the field is "longText" to handle character limit
-    const updatedFormData = {
-      ...formData,
-      [name]: value
-    };
-    setFormData(updatedFormData);
+    const updatedFormData = { ...localFormData, [name]: value };
+    setLocalFormData(updatedFormData);
     onFormDataChange(updatedFormData);
   };
 
@@ -46,18 +35,13 @@ const BeautyForm = ({ onFormDataChange }) => {
   const onCropComplete = async (croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
     const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
-    setFormData((prevData) => ({
-      ...prevData,
-      avatar: croppedImage
-    }));
-    setCroppedAvatar(croppedImage); // Set the cropped avatar to display
-    onFormDataChange({ ...formData, avatar: croppedImage });
+    const updatedFormData = { ...localFormData, avatar: croppedImage };
+    setLocalFormData(updatedFormData);
+    onFormDataChange(updatedFormData);
   };
-
 
   return (
     <form>
-      {/* Avatar Upload */}
       <div className="mb-3">
         <label className="form-label">Tải ảnh đại diện</label>
         <input type="file" accept="image/*" onChange={handleImageUpload} className="form-control" />
@@ -69,8 +53,8 @@ const BeautyForm = ({ onFormDataChange }) => {
                 crop={crop}
                 zoom={zoom}
                 aspect={1}
-                cropShape="round"  // Circular crop
-                showGrid={false}   // No grid
+                cropShape="round"
+                showGrid={false}
                 onCropChange={setCrop}
                 onZoomChange={setZoom}
                 onCropComplete={onCropComplete}
@@ -79,7 +63,6 @@ const BeautyForm = ({ onFormDataChange }) => {
           </div>
         )}
       </div>
-
     </form>
   );
 };
