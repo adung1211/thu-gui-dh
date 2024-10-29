@@ -1,1 +1,1 @@
-export const API_ENDPOINT = 'https://duytnb.pythonanywhere.com/api/endpoint';
+export const API_ENDPOINT = 'http://api.thuguidaihoiix.site/api/endpoint';
